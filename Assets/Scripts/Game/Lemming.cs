@@ -27,6 +27,16 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		float angle = 0;
 
+		[SerializeField]
+		int health = 3;
+
+
+		public int Health 
+		{
+			get { return health; }
+			set { health = value; }
+		}
+
 		void Start () 
 		{
 			currentField = null;
@@ -36,12 +46,15 @@ namespace Assets.Scripts.Game
 
 		void Update()
 		{
+			if(health <= 0)
+				Destroy(gameObject);
+
 			Vector3 approximatedPosition = ApproximatePosition();
 			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[approximatedPosition].transform.position).magnitude < 0.1))
 			{
 				transform.position = currentLevel.Fields[approximatedPosition].transform.position;
 				UpdatePath();
-				currentField.TriggerTile();
+				currentField.TriggerTile(this);
 			}
 
 			transform.position += velocity * speed * Time.deltaTime;

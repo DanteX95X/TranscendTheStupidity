@@ -690,7 +690,7 @@ MonoBehaviour:
   lemmingPrefab: {fileID: 1000011503861784, guid: e0601114425a64138ab1ae80bda7a985,
     type: 2}
   uiText: {fileID: 1970622265}
-  spawnTime: 1
+  spawnTime: 20
   spawnPoint: {x: 0, y: 0, z: 0}
   lemmingCap: 3
 --- !u!1001 &722437112

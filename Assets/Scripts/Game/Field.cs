@@ -11,9 +11,6 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		int group = 0;
 
-		[SerializeField]
-		List<GameObject> tiles = null;
-
 		public Dictionary<Vector2, Field> Neighbours
 		{
 			get { return neighbours; }
@@ -36,12 +33,6 @@ namespace Assets.Scripts.Game
 
 		void Update () 
 		{
-			if(Input.GetButtonDown("Jump") && group == 1)
-			{
-				GameObject newTile = Instantiate(tiles[0], transform.position, transform.rotation) as GameObject;
-				newTile.transform.parent = GameObject.Find("Grid").transform;
-				Destroy(gameObject);
-			}
 		}
 
 		public void SetNeighbours(Dictionary<Vector2, Field> fields)
@@ -71,9 +62,8 @@ namespace Assets.Scripts.Game
 			}
 		}
 
-		public virtual void TriggerTile()
+		public virtual void TriggerTile(Lemming lemming)
 		{
-			Debug.Log("Triggered");
 		}
 	}
 }
