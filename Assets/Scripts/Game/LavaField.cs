@@ -23,7 +23,7 @@ namespace Assets.Scripts.Game
 			lemming.Health -= directDamage;
 			foreach(GameObject collateralDamage in GameObject.FindGameObjectsWithTag("Lemming"))
 			{
-				if((collateralDamage.transform.position - transform.position).magnitude < 1.5)
+				if((collateralDamage.transform.position - transform.position).magnitude < 2.1)
 				{
 					collateralDamage.GetComponent<Lemming>().Health -= indirectDamage;
 				}
