@@ -37,9 +37,11 @@ namespace Assets.Scripts.Game
 		void Update()
 		{
 			Vector3 approximatedPosition = ApproximatePosition();
-			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[ApproximatePosition()].transform.position).magnitude < 0.1))
+			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[approximatedPosition].transform.position).magnitude < 0.1))
 			{
+				transform.position = currentLevel.Fields[approximatedPosition].transform.position;
 				UpdatePath();
+				currentField.TriggerTile();
 			}
 
 			transform.position += velocity * speed * Time.deltaTime;

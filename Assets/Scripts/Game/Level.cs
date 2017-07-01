@@ -36,7 +36,7 @@ namespace Assets.Scripts.Game
 
 		void Start()
 		{
-			timeCounter = 0;
+			timeCounter = spawnTime+1;
 			
 			fields = new Dictionary<Vector2, Field>();
 			RebuildGrid();

@@ -70,5 +70,10 @@ namespace Assets.Scripts.Game
 				lemming.GetComponent<Lemming>().UpdatePath();
 			}
 		}
+
+		public virtual void TriggerTile()
+		{
+			Debug.Log("Triggered");
+		}
 	}
 }
