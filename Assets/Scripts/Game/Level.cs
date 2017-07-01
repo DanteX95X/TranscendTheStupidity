@@ -9,9 +9,27 @@ namespace Assets.Scripts.Game
 	{
 		Dictionary<Vector2, Field> fields;
 
+		[SerializeField]
+		GameObject lemmingPrefab = null;
+
+		[SerializeField]
+		float spawnTime = 1;
+
+		[SerializeField]
+		Vector3 spawnPoint = new Vector3(0,0,0);
+
+		float timeCounter;
+
+		public Dictionary<Vector2, Field> Fields
+		{
+			get { return fields; }
+		}
+
 
 		void Start () 
 		{
+			timeCounter = 0;
+			
 			fields = new Dictionary<Vector2, Field>();
 			GameObject grid = GameObject.Find("Grid");
 			foreach(Transform field in grid.transform)
@@ -34,7 +52,12 @@ namespace Assets.Scripts.Game
 
 		void Update () 
 		{
-		
+			timeCounter += Time.deltaTime;
+			if(timeCounter > spawnTime)
+			{
+				timeCounter = 0;
+				Instantiate(lemmingPrefab, spawnPoint, Quaternion.identity);
+			}
 		}
 	}
 }
