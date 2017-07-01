@@ -82,7 +82,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b1e417a1ea314de1a9aa6ae6fe5c9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  group: 0
+  group: -1
+  groupSprites:
+  - {fileID: 21300000, guid: 02904c19c69964ef6a68bbdcc834c067, type: 3}
+  - {fileID: 21300000, guid: 68e890ad8ab424f5c88ace90e2377f95, type: 3}
+  - {fileID: 21300000, guid: 5d7d5343d241a48bcb43897df5bd1836, type: 3}
+  - {fileID: 21300000, guid: 46edb2fe50fb647ff811f5b043ae7f4d, type: 3}
+  - {fileID: 21300000, guid: 6f4fc1dac32c4420fa618a90fc757770, type: 3}
+  - {fileID: 21300000, guid: 963ff14d37e5c4792b9e64211d690b0e, type: 3}
   directDamage: 3
   indirectDamage: 2
 --- !u!212 &212000012975124264

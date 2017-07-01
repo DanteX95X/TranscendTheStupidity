@@ -11,17 +11,24 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		int group = 0;
 
+		[SerializeField]
+		Sprite[] groupSprites = new Sprite[6];
+
 		public Dictionary<Vector2, Field> Neighbours
 		{
 			get { return neighbours; }
 		}
 
-		public int Group
-		{
+		public int Group {
 			set 
 			{ 
 				group = value;
-				gameObject.tag = "Group" + value; 
+				if (group >= 0)
+				{
+					gameObject.tag = "Group" + value;
+					foreach (Transform child in transform)
+						child.GetComponent<SpriteRenderer>().sprite = groupSprites[group];
+				}
 			}
 		}
 
