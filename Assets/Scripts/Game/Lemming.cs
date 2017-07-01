@@ -51,6 +51,7 @@ namespace Assets.Scripts.Game
 				} 
 				else
 				{
+					currentLevel.LemmingsEscape();
 					Destroy(gameObject);
 				}
 			}

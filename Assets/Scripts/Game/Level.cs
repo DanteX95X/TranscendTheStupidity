@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utilities;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Game
 {
@@ -13,6 +14,9 @@ namespace Assets.Scripts.Game
 		GameObject lemmingPrefab = null;
 
 		[SerializeField]
+		Text uiText = null;
+
+		[SerializeField]
 		float spawnTime = 1;
 
 		[SerializeField]
@@ -20,11 +24,15 @@ namespace Assets.Scripts.Game
 
 		float timeCounter;
 
+		[SerializeField]
+		int lemmingCap = 0;
+
+		int lemmingsEscapedQuantity;
+
 		public Dictionary<Vector2, Field> Fields
 		{
 			get { return fields; }
 		}
-
 
 		void Start()
 		{
@@ -40,8 +48,10 @@ namespace Assets.Scripts.Game
 			foreach (Transform field in grid.transform)
 			{
 				field.gameObject.GetComponent<Field>().SetNeighbours(fields);
-				Debug.Log(field.GetComponent<Field>().Neighbours.Values.Count + " " + field.position);
 			}
+
+			lemmingsEscapedQuantity = 0;
+			UpdateUIText();
 		}
 
 		void Update () 
@@ -52,6 +62,20 @@ namespace Assets.Scripts.Game
 				timeCounter = 0;
 				Instantiate(lemmingPrefab, spawnPoint, Quaternion.identity);
 			}
+
+			if(lemmingsEscapedQuantity >= lemmingCap)
+				Debug.Log("Game Over");
+		}
+
+		void UpdateUIText()
+		{
+			uiText.text = "Lemmings Escaped " + lemmingsEscapedQuantity + "/" + lemmingCap;
+		}
+
+		public void LemmingsEscape()
+		{
+			++lemmingsEscapedQuantity;
+			UpdateUIText();
 		}
 	}
 }
