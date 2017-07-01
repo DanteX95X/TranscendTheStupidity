@@ -67,7 +67,7 @@ namespace Assets.Scripts.Game
 				timeCounter = 0;
 			}
 
-			transform.Rotate(new Vector3(0,0,1), angle);
+			transform.Rotate(new Vector3(0,0,1), angle * Time.deltaTime);
 
 			
 		}

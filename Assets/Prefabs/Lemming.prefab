@@ -55,7 +55,8 @@ MonoBehaviour:
   goal: {x: 2, y: 4}
   speed: 1
   rotationTime: 0.1
-  angle: 1
+  angle: 50
+  health: 3
 --- !u!212 &212000012981070346
 SpriteRenderer:
   m_ObjectHideFlags: 1
