@@ -16,6 +16,8 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		Text uiText = null;
 
+		Dictionary<Vector3, bool> didVulcanoErupt;
+
 		[SerializeField]
 		float spawnTime = 1;
 
@@ -34,12 +36,24 @@ namespace Assets.Scripts.Game
 			get { return fields; }
 		}
 
+		public Dictionary<Vector3, bool> DidVolcanoErupt
+		{
+			get { return didVulcanoErupt; }
+			set { didVulcanoErupt = value; }
+		}
+
 		void Start()
 		{
 			timeCounter = spawnTime+1;
+			didVulcanoErupt = new Dictionary<Vector3, bool>();
 			
 			fields = new Dictionary<Vector2, Field>();
 			RebuildGrid();
+
+			foreach (Transform field in GameObject.Find("Grid").transform)
+			{
+				didVulcanoErupt[field.position] = false;
+			}
 
 			lemmingsEscapedQuantity = 0;
 			UpdateUIText();
