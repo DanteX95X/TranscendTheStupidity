@@ -36,7 +36,7 @@ namespace Assets.Scripts.Utilities
 		void SetCamera(Vector2[] positions)
 		{
 				Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>(); 
-				Vector3 desiredPosition = new Vector3((positions[0].x + positions[1].x)/2, (positions[0].y + positions[1].y)/2, -10);
+				Vector3 desiredPosition = new Vector3((positions[0].x + positions[1].x)/30/*2*/, (positions[0].y + positions[1].y)/2, -10);
 				mainCamera.transform.position = desiredPosition;
 
 
