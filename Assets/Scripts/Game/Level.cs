@@ -39,16 +39,7 @@ namespace Assets.Scripts.Game
 			timeCounter = 0;
 			
 			fields = new Dictionary<Vector2, Field>();
-			GameObject grid = GameObject.Find("Grid");
-			foreach (Transform field in grid.transform)
-			{
-				fields[field.position] = field.GetComponent<Field>();
-			}
-
-			foreach (Transform field in grid.transform)
-			{
-				field.gameObject.GetComponent<Field>().SetNeighbours(fields);
-			}
+			RebuildGrid();
 
 			lemmingsEscapedQuantity = 0;
 			UpdateUIText();
@@ -76,6 +67,20 @@ namespace Assets.Scripts.Game
 		{
 			++lemmingsEscapedQuantity;
 			UpdateUIText();
+		}
+
+		public void RebuildGrid()
+		{
+			GameObject grid = GameObject.Find("Grid");
+			foreach (Transform field in grid.transform)
+			{
+				fields[field.position] = field.GetComponent<Field>();
+			}
+
+			foreach (Transform field in grid.transform)
+			{
+				field.gameObject.GetComponent<Field>().SetNeighbours(fields);
+			}
 		}
 	}
 }

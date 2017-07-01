@@ -8,19 +8,40 @@ namespace Assets.Scripts.Game
 	{
 		Dictionary<Vector2, Field> neighbours;
 
+		[SerializeField]
+		int group = 0;
+
+		[SerializeField]
+		List<GameObject> tiles = null;
+
 		public Dictionary<Vector2, Field> Neighbours
 		{
 			get { return neighbours; }
 		}
 
+		public int Group
+		{
+			set 
+			{ 
+				group = value;
+				gameObject.tag = "Group" + value; 
+			}
+		}
+
 		void Start () 
 		{
 			neighbours = new Dictionary<Vector2, Field>();
+			Group = group;
 		}
 
 		void Update () 
 		{
-		
+			if(Input.GetButtonDown("Jump") && group == 1)
+			{
+				GameObject newTile = Instantiate(tiles[0], transform.position, transform.rotation) as GameObject;
+				newTile.transform.parent = GameObject.Find("Grid").transform;
+				Destroy(gameObject);
+			}
 		}
 
 		public void SetNeighbours(Dictionary<Vector2, Field> fields)
@@ -39,6 +60,15 @@ namespace Assets.Scripts.Game
 		public virtual float TraversalCost()
 		{
 			return 0;
+		}
+
+		public void OnDestroy()
+		{
+			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>().RebuildGrid();
+			foreach(GameObject lemming in GameObject.FindGameObjectsWithTag("Lemming"))
+			{
+				lemming.GetComponent<Lemming>().UpdatePath();
+			}
 		}
 	}
 }

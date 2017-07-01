@@ -36,7 +36,7 @@ namespace Assets.Scripts.Game
 
 		void Update()
 		{
-			Vector3 approximatedPosition = ApproximatePosition();//new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
+			Vector3 approximatedPosition = ApproximatePosition();
 			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[ApproximatePosition()].transform.position).magnitude < 0.1))
 			{
 				UpdatePath();
@@ -73,7 +73,11 @@ namespace Assets.Scripts.Game
 			{
 				currentLevel.LemmingsEscape();
 				Destroy(gameObject);
-			}	
+			}
+			else
+			{
+				velocity = new Vector3(0,0,0);
+			}
 		}
 
 		public Vector3 ApproximatePosition()
