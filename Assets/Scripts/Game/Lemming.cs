@@ -40,7 +40,7 @@ namespace Assets.Scripts.Game
 			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatePosition].transform.position && (transform.position - currentLevel.Fields[approximatePosition].transform.position).magnitude < 0.1))
 			{
 				currentField = currentLevel.Fields[approximatePosition];
-				List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.EuclideanHeuristic);
+				List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.ManhattanHeuristic);
 				if (path.Count > 1)
 				{
 					velocity = (path[1].transform.position - transform.position).normalized;

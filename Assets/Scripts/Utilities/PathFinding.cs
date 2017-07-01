@@ -139,8 +139,8 @@ namespace Assets.Scripts.Utilities
 
 		public static float CalculateCost(Field current, Field next)
 		{
-			float cost = EuclideanHeuristic(current, next);
-				
+			float cost = ManhattanHeuristic(current, next); //EuclideanHeuristic(current, next);
+			cost += next.TraversalCost();
 			return cost;
 		}
 

@@ -25,7 +25,7 @@ namespace Assets.Scripts.Game
 
 		public void SetNeighbours(Dictionary<Vector2, Field> fields)
 		{
-			List<Vector3> displacements = new List<Vector3>(){new Vector3(1,0), new Vector3(1, -1), new Vector3(0, -1),  new Vector3(-1, -1), new Vector3(-1, 0), new Vector3(-1, 1), new Vector3(0, 1), new Vector3(1, 1)}; 
+			List<Vector3> displacements = new List<Vector3>(){new Vector3(1,0), /*new Vector3(1, -1),*/ new Vector3(0, -1),  /*new Vector3(-1, -1),*/ new Vector3(-1, 0), /*new Vector3(-1, 1),*/ new Vector3(0, 1), /*new Vector3(1, 1)*/}; 
 
 			foreach(Vector3 displacement in displacements)
 			{
@@ -34,6 +34,11 @@ namespace Assets.Scripts.Game
 				if(temp != null)
 					neighbours[displacement] = temp;
 			}
+		}
+
+		public virtual float TraversalCost()
+		{
+			return 0;
 		}
 	}
 }

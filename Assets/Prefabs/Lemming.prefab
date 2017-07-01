@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1000011503861784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.1, y: -0.17, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dafae5337b3a4e258c116a76da354ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {x: 3, y: 1}
+  goal: {x: 2, y: 4}
   speed: 1
+  rotationTime: 0.1
+  angle: 1
 --- !u!212 &212000012981070346
 SpriteRenderer:
   m_ObjectHideFlags: 1
