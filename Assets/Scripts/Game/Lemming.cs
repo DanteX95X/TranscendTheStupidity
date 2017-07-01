@@ -36,24 +36,10 @@ namespace Assets.Scripts.Game
 
 		void Update()
 		{
-			Vector3 approximatePosition = new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
-			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatePosition].transform.position && (transform.position - currentLevel.Fields[approximatePosition].transform.position).magnitude < 0.1))
+			Vector3 approximatedPosition = ApproximatePosition();//new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
+			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[ApproximatePosition()].transform.position).magnitude < 0.1))
 			{
-				currentField = currentLevel.Fields[approximatePosition];
-				List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.ManhattanHeuristic);
-				if (path.Count > 1)
-				{
-					velocity = (path[1].transform.position - transform.position).normalized;
-					if(velocity.x > 0)
-						GetComponent<SpriteRenderer>().flipX = false;
-					else if(velocity.x < 0)
-						GetComponent<SpriteRenderer>().flipX = true;
-				} 
-				else
-				{
-					currentLevel.LemmingsEscape();
-					Destroy(gameObject);
-				}
+				UpdatePath();
 			}
 
 			transform.position += velocity * speed * Time.deltaTime;
@@ -69,6 +55,30 @@ namespace Assets.Scripts.Game
 			transform.Rotate(new Vector3(0,0,1), angle);
 
 			
+		}
+
+		public void UpdatePath()
+		{
+			currentField = currentLevel.Fields[ApproximatePosition()];
+			List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.ManhattanHeuristic);
+			if (path.Count > 1)
+			{
+				velocity = (path[1].transform.position - transform.position).normalized;
+				if(velocity.x > 0)
+					GetComponent<SpriteRenderer>().flipX = false;
+				else if(velocity.x < 0)
+					GetComponent<SpriteRenderer>().flipX = true;
+			} 
+			else if(path[0].transform.position == new Vector3(goal.x, goal.y, path[0].transform.position.z))
+			{
+				currentLevel.LemmingsEscape();
+				Destroy(gameObject);
+			}	
+		}
+
+		public Vector3 ApproximatePosition()
+		{
+			return new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
 		}
 	}
 }

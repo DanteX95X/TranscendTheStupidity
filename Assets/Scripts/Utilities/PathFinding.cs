@@ -97,8 +97,8 @@ namespace Assets.Scripts.Utilities
 				if(CalculateCost(previousField, currentField) >= IMPASSABILITY_THRESHOLD)
 				{
 					result.Clear();
-					Debug.Log("Impassable");
-					return result;
+					//Debug.Log("Impassable");
+					//return result;
 				}
 
 				result.Add (previousField);
