@@ -11,7 +11,7 @@ namespace Assets.Scripts.Game
 
 		public override float TraversalCost()
 		{
-			return 2;
+			return 20;
 		}
 
 		public override void TriggerTile(Lemming lemming)

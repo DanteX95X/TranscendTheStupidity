@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dafae5337b3a4e258c116a76da354ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {x: 8, y: 13}
+  goal: {x: 8, y: 11}
   speed: 1
   rotationTime: 0.1
   angle: 50

@@ -80,7 +80,7 @@ namespace Assets.Scripts.Game
 		public void UpdatePath()
 		{
 			currentField = currentLevel.Fields[ApproximatePosition()];
-			List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.ManhattanHeuristic);
+			List<Field> path = PathFinding.AStar(currentField, currentLevel.Fields[goal], PathFinding.EmptyHeuristic/*ManhattanHeuristic*/);
 			if (path.Count > 1)
 			{
 				velocity = (path[1].transform.position - transform.position).normalized;
