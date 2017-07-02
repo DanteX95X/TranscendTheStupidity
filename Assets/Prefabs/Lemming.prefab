@@ -131,7 +131,7 @@ MonoBehaviour:
   speed: 1
   rotationTime: 0.1
   angle: 50
-  health: 3
+  health: 5
   clips:
   - {fileID: 8300000, guid: e969565f2be24470d98fadeb1d62e439, type: 3}
   - {fileID: 8300000, guid: 7017f63123b334ef2b2c040258569b12, type: 3}
