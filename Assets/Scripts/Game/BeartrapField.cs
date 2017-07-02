@@ -15,6 +15,7 @@ namespace Assets.Scripts.Game
 
 		public override void TriggerTile(Lemming lemming)
 		{
+			GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
 			lemming.Health -= damage;
 		}
 	}

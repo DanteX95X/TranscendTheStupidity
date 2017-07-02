@@ -30,6 +30,9 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		int health = 3;
 
+		[SerializeField]
+		AudioClip[] clips = new AudioClip[2];
+
 
 		public int Health 
 		{
@@ -46,8 +49,10 @@ namespace Assets.Scripts.Game
 
 		void Update()
 		{
-			if(health <= 0)
+			if (health <= 0)
+			{
 				Destroy(gameObject);
+			}
 
 			Vector3 approximatedPosition = ApproximatePosition();
 			if (currentField == null || (currentField.transform.position != currentLevel.Fields[approximatedPosition].transform.position && (transform.position - currentLevel.Fields[approximatedPosition].transform.position).magnitude < 0.1))
@@ -87,7 +92,8 @@ namespace Assets.Scripts.Game
 			else if(path[0].transform.position == new Vector3(goal.x, goal.y, path[0].transform.position.z))
 			{
 				currentLevel.LemmingsEscape();
-				Destroy(gameObject);
+				GetComponent<AudioSource>().PlayOneShot(clips[1]);
+				StartCoroutine(CommitSuicide());
 			}
 			else
 			{
@@ -98,6 +104,12 @@ namespace Assets.Scripts.Game
 		public Vector3 ApproximatePosition()
 		{
 			return new Vector3(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y), transform.position.z);
+		}
+
+		IEnumerator CommitSuicide()
+		{
+			yield return new WaitForSeconds(0.5f);
+			Destroy(gameObject);
 		}
 	}
 }

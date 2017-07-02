@@ -26,6 +26,7 @@ namespace Assets.Scripts.Game
 				return;
 
 			Instantiate(explosion, transform.position, transform.rotation);
+			GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
 
 			lemming.Health -= directDamage;
 			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>().DidVolcanoErupt[transform.position] = true;

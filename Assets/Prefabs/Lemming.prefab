@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000012180739088}
   - 212: {fileID: 212000012981070346}
   - 114: {fileID: 114000012687991952}
+  - 82: {fileID: 82000013427772084}
   m_Layer: 0
   m_Name: Lemming
   m_TagString: Lemming
@@ -41,6 +42,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &82000013427772084
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011503861784}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7017f63123b334ef2b2c040258569b12, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114000012687991952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,11 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dafae5337b3a4e258c116a76da354ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {x: 2, y: 4}
+  goal: {x: 8, y: 13}
   speed: 1
   rotationTime: 0.1
   angle: 50
   health: 3
+  clips:
+  - {fileID: 8300000, guid: e969565f2be24470d98fadeb1d62e439, type: 3}
+  - {fileID: 8300000, guid: 7017f63123b334ef2b2c040258569b12, type: 3}
 --- !u!212 &212000012981070346
 SpriteRenderer:
   m_ObjectHideFlags: 1
