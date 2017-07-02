@@ -37,7 +37,11 @@ namespace Assets.Scripts.Game
 		public int Health 
 		{
 			get { return health; }
-			set { health = value; }
+			set 
+			{ 
+				health = value;
+				GetComponentInChildren<TextMesh>().text = "" + health; 
+			}
 		}
 
 		void Start () 
@@ -45,6 +49,7 @@ namespace Assets.Scripts.Game
 			currentField = null;
 			currentLevel = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>();
 			timeCounter = 0;
+			Health = health;
 		}
 
 		void Update()
