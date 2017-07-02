@@ -92,6 +92,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 963ff14d37e5c4792b9e64211d690b0e, type: 3}
   directDamage: 3
   indirectDamage: 2
+  explosion: {fileID: 100008, guid: 337943813ac55274db17d9c4dfcaf5ea, type: 2}
 --- !u!212 &212000012975124264
 SpriteRenderer:
   m_ObjectHideFlags: 1

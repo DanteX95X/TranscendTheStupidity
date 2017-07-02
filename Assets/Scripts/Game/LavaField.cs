@@ -12,6 +12,8 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		int indirectDamage = 2;
 
+		[SerializeField]
+		GameObject explosion = null;
 
 		public override float TraversalCost()
 		{
@@ -22,6 +24,8 @@ namespace Assets.Scripts.Game
 		{
 			if(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>().DidVolcanoErupt[transform.position])
 				return;
+
+			Instantiate(explosion, transform.position, transform.rotation);
 
 			lemming.Health -= directDamage;
 			GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>().DidVolcanoErupt[transform.position] = true;
