@@ -16,6 +16,9 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		Text uiText = null;
 
+		[SerializeField]
+		Text winConditionIndicator = null;
+
 		Dictionary<Vector3, bool> didVulcanoErupt;
 
 		[SerializeField]
@@ -29,6 +32,9 @@ namespace Assets.Scripts.Game
 		[SerializeField]
 		int lemmingCap = 0;
 
+		[SerializeField]
+		int lemmingWave = 0;
+
 		int lemmingsEscapedQuantity;
 
 		public Dictionary<Vector2, Field> Fields
@@ -40,6 +46,12 @@ namespace Assets.Scripts.Game
 		{
 			get { return didVulcanoErupt; }
 			set { didVulcanoErupt = value; }
+		}
+
+		public int LemmingWave
+		{
+			get { return lemmingWave; }
+			set { lemmingWave = value; }
 		}
 
 		void Start()
@@ -62,19 +74,23 @@ namespace Assets.Scripts.Game
 		void Update () 
 		{
 			timeCounter += Time.deltaTime;
-			if(timeCounter > spawnTime)
+			if(timeCounter > spawnTime && lemmingWave > 0)
 			{
 				timeCounter = 0;
 				Instantiate(lemmingPrefab, spawnPoint, Quaternion.identity);
+				--lemmingWave;
+				winConditionIndicator.text = "Lemmings left: " + lemmingWave;
 			}
 
 			if(lemmingsEscapedQuantity >= lemmingCap)
 				Debug.Log("Game Over");
+			else if(lemmingWave <= 0 && GameObject.FindGameObjectsWithTag("Lemming").Length <= 0)
+				Debug.Log("You won");
 		}
 
 		void UpdateUIText()
 		{
-			uiText.text = "Lemmings Escaped " + lemmingsEscapedQuantity + "/" + lemmingCap;
+			uiText.text = "Lemmings Escaped: " + lemmingsEscapedQuantity + "/" + lemmingCap;
 		}
 
 		public void LemmingsEscape()
