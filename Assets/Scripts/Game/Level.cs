@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Utilities;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game
 {
@@ -76,13 +77,18 @@ namespace Assets.Scripts.Game
 
 		void Update()
 		{
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+				SceneManager.LoadScene("menu");
+			}
+
 			timeCounter += Time.deltaTime;
 			if (timeCounter > spawnTime && lemmingWave > 0)
 			{
 				timeCounter = 0;
 				Instantiate(lemmingPrefab, spawnPoint, Quaternion.identity);
 				--lemmingWave;
-				winConditionIndicator.text = "Lemmings left: " + lemmingWave;
+				winConditionIndicator.text = "Creatures left: " + lemmingWave;
 			}
 
 			if (lemmingsEscapedQuantity >= lemmingCap)
@@ -95,6 +101,7 @@ namespace Assets.Scripts.Game
 				{
 					Destroy(lemming.gameObject);
 				}
+				StartCoroutine(ReturnToMainMenu());
 			} 
 			else if (lemmingWave <= 0 && GameObject.FindGameObjectsWithTag("Lemming").Length <= 0)
 			{
@@ -106,12 +113,13 @@ namespace Assets.Scripts.Game
 				{
 					Destroy(lemming.gameObject);
 				}
+				StartCoroutine(ReturnToMainMenu());
 			}
 		}
 
 		void UpdateUIText()
 		{
-			uiText.text = "Lemmings Escaped: " + lemmingsEscapedQuantity + "/" + lemmingCap;
+			uiText.text = "Creatures Escaped: " + lemmingsEscapedQuantity + "/" + lemmingCap;
 		}
 
 		public void LemmingsEscape()
@@ -132,6 +140,12 @@ namespace Assets.Scripts.Game
 			{
 				field.gameObject.GetComponent<Field>().SetNeighbours(fields);
 			}
+		}
+
+		IEnumerator ReturnToMainMenu()
+		{
+			yield return new WaitForSeconds(3);
+			SceneManager.LoadScene("menu");
 		}
 	}
 }
