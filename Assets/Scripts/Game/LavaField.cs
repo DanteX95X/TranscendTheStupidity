@@ -17,6 +17,8 @@ namespace Assets.Scripts.Game
 
 		public override float TraversalCost()
 		{
+			if(GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Level>().DidVolcanoErupt[transform.position])
+				return 0;
 			return 20;
 		}
 
